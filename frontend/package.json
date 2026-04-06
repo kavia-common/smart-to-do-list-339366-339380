@@ -1,0 +1,22 @@
+{
+  "name": "smart-to-do-list-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Todo List SPA (React) with filters and localStorage persistence.",
+  "scripts": {
+    "dev": "vite --port $REACT_APP_PORT --host",
+    "build": "vite build",
+    "preview": "vite preview --port $REACT_APP_PORT --host",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.2",
+    "eslint": "^9.34.0",
+    "vite": "^7.1.3"
+  }
+}
