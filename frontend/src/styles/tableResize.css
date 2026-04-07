@@ -1,0 +1,70 @@
+/* Table resizing / overflow guidance
+   Ensures table content stays inside cells and the table scrolls horizontally when needed. */
+
+.tableScroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* PUBLIC_INTERFACE */
+.costTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  /* Key change: prevents wide content from forcing column growth */
+  table-layout: fixed;
+}
+
+/* Ensure padding/borders don't push content beyond computed widths */
+.costTable th,
+.costTable td {
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  vertical-align: top;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Header cells: wrap to multiple lines */
+.costTable th {
+  white-space: normal;
+  overflow-wrap: anywhere; /* last-resort break if needed */
+  word-break: normal;
+  line-height: 1.2;
+}
+
+/* Body cells: keep numbers on one line when possible, but never overflow */
+.costTable td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Alignment: model column left, numbers right */
+.costTable th:first-child,
+.costTable td:first-child {
+  text-align: left;
+  white-space: normal; /* model names can wrap */
+}
+
+.costTable th:not(:first-child),
+.costTable td:not(:first-child) {
+  text-align: right;
+}
+
+/* Keep header rows readable when wrapping */
+.costTable thead th {
+  min-height: 44px;
+}
+
+/* Optional helper classes for colgroup widths if desired */
+.costColModel {
+  width: 220px;
+}
+.costColNarrow {
+  width: 110px;
+}
+.costColTotal {
+  width: 130px;
+}
